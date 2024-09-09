@@ -14182,6 +14182,7 @@ MonoBehaviour:
   speed: 1.5
   stopDistance: 0.1
   newPickMoveDistance: 1
+  smoothTime: 0.01
   targetMovePos: {x: 0, y: 0}
 --- !u!50 &1729866881
 Rigidbody2D:
@@ -14639,6 +14640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   rb: {fileID: 1879529528}
+  smoothTime: 0.02
 --- !u!1 &1935606286
 GameObject:
   m_ObjectHideFlags: 0

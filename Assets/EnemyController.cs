@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float newPickMoveDistance = 4f;
 
+    [SerializeField]
+    float smoothTime = 0.1f;
+
     GameObject player;
 
     [SerializeField]
@@ -52,6 +55,18 @@ public class EnemyController : MonoBehaviour
         playerPosAtPosPickedMoment = player.transform.position;
     }
 
+    private void Update()
+    {
+        if (rb.velocity != Vector2.zero)
+        {
+            // Get the angle in degrees based on the velocity direction
+            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+
+            // Subtract 90 degrees to make the top of the sprite face the direction of movement
+            transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+        }
+    }
+
     private void FixedUpdate()
     {
         if(player == null)
@@ -75,6 +90,7 @@ public class EnemyController : MonoBehaviour
             PickTargetMovePos();
         }
 
-        rb.velocity = ((Vector3)targetMovePos - transform.position).normalized * speed;
+        Vector2 targetVelocity = ((Vector3)targetMovePos - transform.position).normalized * speed;
+        rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, smoothTime);
     }
 }
