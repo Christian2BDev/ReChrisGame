@@ -14,10 +14,10 @@ public static class PlayerStats
     public static void ChangeHealth(float amount)
     {
         health += amount;
-        Mathf.Clamp(health, 0, maxHealth);
+        health = Mathf.Clamp(health, 0, maxHealth);
 
         if (health == 0) {
-            Debug.Log("Health = 0, end level");
+            GameState.gameOver = true;
         }
     }
 
