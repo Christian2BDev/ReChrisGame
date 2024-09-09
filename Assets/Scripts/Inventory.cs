@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public static class Inventory
 {
@@ -21,6 +22,7 @@ public static class Inventory
             case Materials.gold: gold += a; break;
             case Materials.iron: iron += a; break;
         }
+        UpdateItems();
        
     }
     public static int GetItemAmount(Materials m) {
@@ -34,5 +36,13 @@ public static class Inventory
             default: return -1;
         }
       
+    }
+
+    private static void UpdateItems() {
+        GameObject.Find("woodValue").GetComponent<TMP_Text>().text = wood.ToString();
+        GameObject.Find("stoneValue").GetComponent<TMP_Text>().text = stone.ToString();
+        GameObject.Find("foodValue").GetComponent<TMP_Text>().text = food.ToString();
+        GameObject.Find("ironValue").GetComponent<TMP_Text>().text = iron.ToString();
+        GameObject.Find("goldValue").GetComponent<TMP_Text>().text = gold.ToString();
     }
 }
