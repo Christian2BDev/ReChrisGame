@@ -3309,11 +3309,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelerationMultiplier: 0.005
-  decelerationMultiplier: 0.15
+  decelerationMultiplier: 0.08
   rb: {fileID: 1879529528}
   smoothTime: 0.2
   maxAngularVelocity: 25
   maxVelocity: 1
+  minVelocity: -0.3
 --- !u!1 &1935606286
 GameObject:
   m_ObjectHideFlags: 0

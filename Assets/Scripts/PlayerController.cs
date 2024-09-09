@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     float maxVelocity = 1f;
+    [SerializeField]
+    float minVelocity = -0.3f;
 
     float velocity = 0;
     // Start is called before the first frame update
@@ -57,14 +59,14 @@ public class PlayerController : MonoBehaviour
         //velocity += 1 / change * accelerationMultiplier;
         //Debug.Log(deltaDir);
 
-        if (Mathf.Abs(anglediff) < 120)
+        if (Mathf.Abs(anglediff) < 150)
         {
             velocity += (1 - (Mathf.Abs(anglediff) / 180)) * accelerationMultiplier;
         }
         else {
             velocity -= (1 - (Mathf.Abs(anglediff) / 180)) * decelerationMultiplier;
         }
-        velocity = Mathf.Clamp(velocity, 0, maxVelocity);
+        velocity = Mathf.Clamp(velocity, minVelocity, maxVelocity);
         Debug.Log(anglediff);
 
         // Smoothly interpolate between current velocity and target velocity
