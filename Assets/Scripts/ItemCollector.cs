@@ -12,8 +12,5 @@ public class ItemCollector : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        Debug.Log($"wood = {Inventory.GetItemAmount(Inventory.Materials.wood)}");
-    }
+    
 }
