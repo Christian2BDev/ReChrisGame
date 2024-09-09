@@ -972,10 +972,10 @@ MonoBehaviour:
   IslandOceanTransistionTileCornerOZ: {fileID: 11400000, guid: a62a63129773d459b92043542f38158d, type: 2}
   IslandOceanTransistionTileCornerZW: {fileID: 11400000, guid: 76a11e48ee7b7409792164c4776cf328, type: 2}
   IslandOceanTransistionTileCornerNW: {fileID: 11400000, guid: a62a63129773d459b92043542f38158d, type: 2}
-  IslandOceanTransistionTileCornerInNO: {fileID: 11400000, guid: 38eb1f2b7b0be4fb8a57dac9b1729929, type: 2}
-  IslandOceanTransistionTileCornerInOZ: {fileID: 11400000, guid: b0c01d0bc384e4f32b6468c5c38a3597, type: 2}
-  IslandOceanTransistionTileCornerInZW: {fileID: 11400000, guid: 76cdc84e4c9a843b7b3c9b495fc55985, type: 2}
-  IslandOceanTransistionTileCornerInNW: {fileID: 11400000, guid: 04afb87d6e7724468bdd1dfaa1a1dcff, type: 2}
+  IslandOceanTransistionTileCornerInNO: {fileID: 11400000, guid: 158e8902f27054747abdd7098fc370ee, type: 2}
+  IslandOceanTransistionTileCornerInOZ: {fileID: 11400000, guid: 8730099ef8fb3431aa5e18e551228808, type: 2}
+  IslandOceanTransistionTileCornerInZW: {fileID: 11400000, guid: cd2ff4ebf4f844eb6ac1926ab9c93d13, type: 2}
+  IslandOceanTransistionTileCornerInNW: {fileID: 11400000, guid: b6826875729a34d3e8e4e80452802963, type: 2}
   mapWidth: 100
   mapHeight: 100
   scale: 10
