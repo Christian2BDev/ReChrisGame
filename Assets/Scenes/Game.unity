@@ -2846,7 +2846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1729866881}
-  speed: 1.5
+  speed: 0.7
   stopDistance: 0.1
   newPickMoveDistance: 1
   smoothTime: 0.01
@@ -3221,7 +3221,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!60 &1879529529
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3306,9 +3306,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ff0cde3efb5448e89e3e466066dcde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  accelerationMultiplier: 0.005
+  decelerationMultiplier: 0.15
   rb: {fileID: 1879529528}
-  smoothTime: 0.02
+  smoothTime: 0.2
+  maxAngularVelocity: 25
+  maxVelocity: 1
 --- !u!1 &1935606286
 GameObject:
   m_ObjectHideFlags: 0
