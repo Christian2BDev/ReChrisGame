@@ -16,9 +16,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField]
-    float smoothTime = 0.2f;
-
-    [SerializeField]
     float maxAngularVelocity = 45f;
 
     [SerializeField]
@@ -53,12 +50,6 @@ public class PlayerController : MonoBehaviour
 
         rb.angularVelocity = desiredAngularVelocity;
 
-        //Vector2 curDirection = AngleToVector(curAngle + 90);
-        //Vector2 deltaDir = movementVec - curDirection;
-        //float change = Mathf.Abs(deltaDir.x) + Mathf.Abs(deltaDir.y);
-        //velocity += 1 / change * accelerationMultiplier;
-        //Debug.Log(deltaDir);
-
         if (Mathf.Abs(anglediff) < 150)
         {
             velocity += (1 - (Mathf.Abs(anglediff) / 180)) * accelerationMultiplier;
@@ -77,5 +68,16 @@ public class PlayerController : MonoBehaviour
         float rad = angleDeg * Mathf.Deg2Rad;
 
         return new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag.Equals("Enemy"))
+        {
+            PlayerStats.ChangeHealth(-10);
+            Vector2 enemyVelocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+            Vector2 deltaVelocity = enemyVelocity + rb.velocity;
+            collision.gameObject.GetComponent<EnemyController>().ChangeHealthAmount(-10);
+        }
     }
 }
