@@ -12,7 +12,7 @@ public static class Inventory
         wood,stone,food,iron,gold
     }
 
-    static void ChangeItemAmount(Materials m, int a) {
+    public static void ChangeItemAmount(Materials m, int a) {
         switch (m)
         {
             case Materials.wood: wood += a; break;
@@ -23,7 +23,7 @@ public static class Inventory
         }
        
     }
-    static int GetWood(Materials m) {
+    public static int GetItemAmount(Materials m) {
         switch (m)
         {
             case Materials.wood: return wood; 
