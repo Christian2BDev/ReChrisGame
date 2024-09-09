@@ -963,19 +963,19 @@ MonoBehaviour:
   mapl2: {fileID: 1251447240}
   copymap: {fileID: 1310315557}
   oceanTile: {fileID: 11400000, guid: a974388389b1a44a5ba4406ca9cc1549, type: 2}
-  IslandTile: {fileID: 11400000, guid: b5aee15c2a9a547eea851d4721601960, type: 2}
-  IslandOceanTransistionTileTop: {fileID: 11400000, guid: 5403f01067af94bc0a3c01c0795088b6, type: 2}
-  IslandOceanTransistionTileBottom: {fileID: 11400000, guid: b35d59b1312e54e25aad1cce86fd5d66, type: 2}
-  IslandOceanTransistionTileLeft: {fileID: 11400000, guid: 2cf88f15331864cadb971390ed5ebc10, type: 2}
-  IslandOceanTransistionTileRight: {fileID: 11400000, guid: d637a24615e7d498c97b77f3057932c5, type: 2}
-  IslandOceanTransistionTileCornerNO: {fileID: 11400000, guid: 76a11e48ee7b7409792164c4776cf328, type: 2}
-  IslandOceanTransistionTileCornerOZ: {fileID: 11400000, guid: a62a63129773d459b92043542f38158d, type: 2}
-  IslandOceanTransistionTileCornerZW: {fileID: 11400000, guid: 76a11e48ee7b7409792164c4776cf328, type: 2}
-  IslandOceanTransistionTileCornerNW: {fileID: 11400000, guid: a62a63129773d459b92043542f38158d, type: 2}
-  IslandOceanTransistionTileCornerInNO: {fileID: 11400000, guid: 158e8902f27054747abdd7098fc370ee, type: 2}
-  IslandOceanTransistionTileCornerInOZ: {fileID: 11400000, guid: 8730099ef8fb3431aa5e18e551228808, type: 2}
-  IslandOceanTransistionTileCornerInZW: {fileID: 11400000, guid: cd2ff4ebf4f844eb6ac1926ab9c93d13, type: 2}
-  IslandOceanTransistionTileCornerInNW: {fileID: 11400000, guid: b6826875729a34d3e8e4e80452802963, type: 2}
+  IslandTile: {fileID: 11400000, guid: 1978b971a20f64fd489af735f8e8b447, type: 2}
+  IslandOceanTransistionTileTop: {fileID: 11400000, guid: 4368466c5052043ef862fc5924d6683f, type: 2}
+  IslandOceanTransistionTileBottom: {fileID: 11400000, guid: 99236673be5604b838b5fb7ef368bf7c, type: 2}
+  IslandOceanTransistionTileLeft: {fileID: 11400000, guid: f8819f2da21fa41a5a765cc899ec6576, type: 2}
+  IslandOceanTransistionTileRight: {fileID: 11400000, guid: b1730921b716c4584b5b8445daaa7540, type: 2}
+  IslandOceanTransistionTileCornerNO: {fileID: 11400000, guid: 5d15f166d77cd4e3288d9216ff1fd89c, type: 2}
+  IslandOceanTransistionTileCornerOZ: {fileID: 11400000, guid: e30ade5169d774df6891ef4cb01fbad1, type: 2}
+  IslandOceanTransistionTileCornerZW: {fileID: 11400000, guid: 4a3a05376083545308b1a5939fdd0b93, type: 2}
+  IslandOceanTransistionTileCornerNW: {fileID: 11400000, guid: 4ac9035de950842adb67b557c769801d, type: 2}
+  IslandOceanTransistionTileCornerInNO: {fileID: 11400000, guid: fa4721bc247fa49169705d37ee857d01, type: 2}
+  IslandOceanTransistionTileCornerInOZ: {fileID: 11400000, guid: 7b4b78f40fd4b4edc9387cfead79d4c7, type: 2}
+  IslandOceanTransistionTileCornerInZW: {fileID: 11400000, guid: 9868fe5b47b4b41d6bf72e6902e49e91, type: 2}
+  IslandOceanTransistionTileCornerInNW: {fileID: 11400000, guid: 12800634fe4194e0cb8f57a042c62f0b, type: 2}
   mapWidth: 100
   mapHeight: 100
   scale: 10
@@ -2848,6 +2848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c1f4d3ec2e0394db152159b8382f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 25
   rb: {fileID: 1729866881}
   speed: 0.7
   stopDistance: 0.1
@@ -3232,7 +3233,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 4a59579b280b24791b4829847fafcf90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3373,7 +3374,6 @@ MonoBehaviour:
   accelerationMultiplier: 0.005
   decelerationMultiplier: 0.08
   rb: {fileID: 1879529528}
-  smoothTime: 0.2
   maxAngularVelocity: 25
   maxVelocity: 1
   minVelocity: -0.3

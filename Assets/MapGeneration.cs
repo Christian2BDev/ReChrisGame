@@ -137,7 +137,7 @@ public class MapGeneration : MonoBehaviour
         }
         else if (GetTileBase(x, y + 1) == IslandTile && GetTileBase(x - 1, y) == IslandTile)
         {
-            mapl2.SetTile(new Vector3Int(x, y, 0), IslandOceanTransistionTileCornerZW);
+            mapl2.SetTile(new Vector3Int(x, y, 0), IslandOceanTransistionTileCornerOZ);
         }
         else if (GetTileBase(x, y + 1) == IslandTile && GetTileBase(x + 1, y) == IslandTile)
         {

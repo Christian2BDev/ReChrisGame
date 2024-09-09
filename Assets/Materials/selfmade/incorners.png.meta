@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 67ac51ea157204609b7dceae07450421
+guid: ee5feeccc2b4f476eb37e7ff592e2d9f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: corners_0
+      name: incorners_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d1ba671856ca41319a75771869f728e
-      internalID: 671814200
+      spriteID: f19ed339a78a64688a41d86cfcac2e7a
+      internalID: 837975574
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: corners_1
+      name: incorners_1
       rect:
         serializedVersion: 2
         x: 32
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79e6d0bbdc1ff4b91968be93a9f2e9d8
-      internalID: 1280242473
+      spriteID: 9c3638d5ebf5e452284efc61111dab13
+      internalID: -1526465096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: corners_2
+      name: incorners_2
       rect:
         serializedVersion: 2
         x: 0
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa2a5ebe35fdf48d6a311fcf6d8560d7
-      internalID: -424138487
+      spriteID: e157e2c6de559465891ae118d8cb145f
+      internalID: 509082118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: corners_3
+      name: incorners_3
       rect:
         serializedVersion: 2
         x: 32
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4d4fe19e30e549a78e7ee78252efb65
-      internalID: -1729290924
+      spriteID: 23010598554bf40f59d99331bcc868df
+      internalID: 982765381
       vertices: []
       indices: 
       edges: []
@@ -230,10 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      corners_0: 671814200
-      corners_1: 1280242473
-      corners_2: -424138487
-      corners_3: -1729290924
+      incorners_0: 837975574
+      incorners_1: -1526465096
+      incorners_2: 509082118
+      incorners_3: 982765381
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
