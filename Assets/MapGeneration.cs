@@ -27,8 +27,17 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] float scale = 10f;
     [SerializeField] float waterline = 0.6f;
 
+    [SerializeField, Tooltip("Set noiseXOffset and noiseYOffset to -1 for random noise map positions")]
+    float noiseXOffset = 0;
+    [SerializeField]
+    float noiseYOffset = 0;
+
     void Start()
     {
+        if (noiseXOffset == -1 && noiseYOffset == -1) {
+            noiseXOffset = Random.Range(0, 10000);
+            noiseYOffset = Random.Range(0, 10000);
+        }
         GenerateMap();
     }
 
@@ -41,7 +50,7 @@ public class MapGeneration : MonoBehaviour
                 float PosX = (float)x / mapWidth * scale;
                 float PosY = (float)y / mapHeight * scale;
 
-                float noiseValue = Mathf.PerlinNoise(PosX, PosY);
+                float noiseValue = Mathf.PerlinNoise(PosX + noiseXOffset, PosY + noiseYOffset);
 
                 if (noiseValue > waterline )
                 {
@@ -74,9 +83,6 @@ public class MapGeneration : MonoBehaviour
                 {
                     Bottom(x,y);
                 }
-
-                
-
             }
         }
     }

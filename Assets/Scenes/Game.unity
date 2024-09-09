@@ -980,6 +980,8 @@ MonoBehaviour:
   mapHeight: 100
   scale: 10
   waterline: 0.6
+  noiseXOffset: -1
+  noiseYOffset: -1
 --- !u!1 &743010948
 GameObject:
   m_ObjectHideFlags: 0
