@@ -17,6 +17,6 @@ public class Follow : MonoBehaviour
     void Update()
     {
         Vector3 pos = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
-        gameObject.transform.position = new Vector3(pos.x, pos.y, -1);
+        gameObject.transform.position = new Vector3(pos.x, pos.y, -10);
     }
 }
