@@ -12,6 +12,9 @@ public class GameState : MonoBehaviour
     private float min = 0;
     [SerializeField]
     private float max = 0;
+
+    [SerializeField]
+    public static bool gameOver = false;
  
     private void Start()
     {

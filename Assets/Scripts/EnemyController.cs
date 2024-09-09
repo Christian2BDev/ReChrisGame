@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
+    float health = 25;
+
+    [SerializeField]
     Rigidbody2D rb;
 
     [SerializeField]
@@ -92,5 +95,10 @@ public class EnemyController : MonoBehaviour
 
         Vector2 targetVelocity = ((Vector3)targetMovePos - transform.position).normalized * speed;
         rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, smoothTime);
+    }
+
+    public void ChangeHealthAmount(float amount)
+    {
+        health -= amount;
     }
 }
