@@ -1,5 +1,8 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameState : MonoBehaviour
 {
@@ -13,11 +16,29 @@ public class GameState : MonoBehaviour
     [SerializeField]
     private float max = 0;
 
+    public GameObject postProccesing;
+    private Vignette vg;
+    private Volume v;
+    private ColorAdjustments ca;
+    [SerializeField]
+    float target = 0.5f;
+    [SerializeField]
+    float orignal = 0;
+    [SerializeField]
+    float duration = 7.5f;
+    [SerializeField]
+    float value = 0;
+    
+
     [SerializeField]
     public static bool gameOver = false;
  
     private void Start()
     {
+        
+        v = postProccesing.GetComponent<Volume>();
+        v.profile.TryGet(out vg);
+        v.profile.TryGet(out ca);
         timerTime = Mathf.Round(Random.Range(60f * min, 60f * max));
     }
 
@@ -37,6 +58,21 @@ public class GameState : MonoBehaviour
         {
             switchPhase();
         }
+
+
+        if (Storm)
+        {
+            value = Mathf.MoveTowards(value, target, (1 / duration) * Time.deltaTime);
+            
+
+        }
+        else {
+            value = Mathf.MoveTowards(value, orignal, (1 / duration) * Time.deltaTime);
+            
+        }
+        vg.intensity.value = value;
+        ca.postExposure.value = value * -5;
+        ca.saturation.value = value * -155.5f;
     }
 
     //generated a new timer
@@ -44,5 +80,4 @@ public class GameState : MonoBehaviour
         timerTime = Mathf.Round(Random.Range(60f * min, 60f * max));
         Storm = !Storm;
     }
-
 }

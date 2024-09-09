@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             velocity -= (1 - (Mathf.Abs(anglediff) / 180)) * decelerationMultiplier;
         }
         velocity = Mathf.Clamp(velocity, minVelocity, maxVelocity);
-        Debug.Log(anglediff);
+        //Debug.Log(anglediff);
 
         // Smoothly interpolate between current velocity and target velocity
         rb.velocity = AngleToVector(curAngle + 90).normalized * velocity;
