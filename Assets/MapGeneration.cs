@@ -72,7 +72,7 @@ public class MapGeneration : MonoBehaviour
         {
             for (int y = 0; y < mapWidth; y++)
             {
-               
+                
                 //Top
                 if (GetTileBase(x, y + 1) == oceanTile && GetTileBase(x, y) != IslandTile)
                 {
@@ -83,12 +83,15 @@ public class MapGeneration : MonoBehaviour
                 {
                     Bottom(x,y);
                 }
+
+                
             }
         }
     }
 
     void Top(int x, int y) {
 
+       
         if (GetTileBase(x - 1, y) == oceanTile && GetTileBase(x + 1, y) == oceanTile && GetTileBase(x, y - 1) == oceanTile && GetTileBase(x + 1, y - 1) == IslandTile)
         {
             mapl2.SetTile(new Vector3Int(x, y, 0), IslandOceanTransistionTileCornerInNW);
