@@ -3562,9 +3562,9 @@ MonoBehaviour:
   accelerationMultiplier: 0.005
   decelerationMultiplier: 0.08
   rb: {fileID: 1879529528}
-  maxAngularVelocity: 25
-  maxVelocity: 1
-  minVelocity: -0.3
+  angularVelocity: 30
+  maxVelocity: 0.4
+  minVelocity: -0.2
 --- !u!1 &1935606286
 GameObject:
   m_ObjectHideFlags: 0
