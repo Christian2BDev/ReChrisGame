@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             PlayerStats.ChangeHealth(-10);
-            Vector2 enemyVelocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
-            Vector2 deltaVelocity = enemyVelocity + rb.velocity;
+            //Vector2 enemyVelocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+            //Vector2 deltaVelocity = enemyVelocity + rb.velocity;
             collision.gameObject.GetComponent<EnemyController>().ChangeHealthAmount(-10);
         }
         else if (collision.gameObject.CompareTag("Land"))
@@ -48,16 +48,19 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!Dock.docked) {
-            Vector2 movementVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-
-            float curAngle = transform.eulerAngles.z;
-            Vector2 currentMovementVec = AngleToVector(curAngle + 90);
-            velocity += accelerationMultiplier * movementVec.y;
-            velocity = Mathf.Clamp(velocity, minVelocity, maxVelocity);
-            rb.velocity = currentMovementVec * velocity;
-            rb.angularVelocity = -movementVec.x * angularVelocity * velocity;
+        if (Dock.docked) {
+            return;
         }
+        
+        Vector2 movementVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+
+        float curAngle = transform.eulerAngles.z;
+        Vector2 currentMovementVec = AngleToVector(curAngle + 90);
+        float multiplier = currentMovementVec.y < 0 ? accelerationMultiplier : decelerationMultiplier;
+        velocity += multiplier * movementVec.y;
+        velocity = Mathf.Clamp(velocity, minVelocity, maxVelocity);
+        rb.velocity = currentMovementVec * velocity;
+        rb.angularVelocity = -movementVec.x * angularVelocity * velocity;
     }
 
     Vector2 AngleToVector(float angleDeg)

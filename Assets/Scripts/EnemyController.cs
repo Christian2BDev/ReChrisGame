@@ -1,5 +1,7 @@
+using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,9 +22,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float newPickMoveDistance = 4f;
 
-    [SerializeField]
-    float smoothTime = 0.1f;
-
     GameObject player;
 
     [SerializeField]
@@ -32,6 +31,8 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     NavMeshAgent agent;
+
+    NavMeshSurface surface;
 
     private void Start()
     {
@@ -51,6 +52,7 @@ public class EnemyController : MonoBehaviour
         }
         float randomXDeviation = Random.Range(-3.5f, 3.5f);
         float randomyDeviation = Random.Range(-3.5f, 3.5f);
+        //TODO: pick a point at the side of the boat instead of trying to crash into the player
         if(pickPlayerCentre)
         {
             targetMovePos = player.transform.position;
@@ -58,6 +60,11 @@ public class EnemyController : MonoBehaviour
         else
         {
             targetMovePos = new Vector2(player.transform.position.x + randomXDeviation, player.transform.position.y + randomyDeviation);
+        }
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(targetMovePos, out hit, 2f, NavMesh.AllAreas))
+        {
+            targetMovePos = hit.position;
         }
         playerPosAtPosPickedMoment = player.transform.position;
         agent.SetDestination(targetMovePos);
