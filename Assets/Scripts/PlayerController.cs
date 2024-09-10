@@ -49,7 +49,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (Dock.docked) {
+            rb.velocity = new Vector2(0, 0);
             return;
+            
         }
         
         Vector2 movementVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;

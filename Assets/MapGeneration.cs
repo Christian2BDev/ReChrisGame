@@ -10,6 +10,7 @@ public class MapGeneration : MonoBehaviour
     public Tilemap map;
     public Tilemap mapl2;
     public Tilemap copymap;
+    public Tilemap Colisionmap;
     public TileBase oceanTile;
     public TileBase IslandTile;
     public TileBase IslandOceanTransistionTileTop;
@@ -88,7 +89,9 @@ public class MapGeneration : MonoBehaviour
                 {
                     Bottom(x,y);
                 }
-
+              
+                   
+              
                 
             }
         }
@@ -96,7 +99,7 @@ public class MapGeneration : MonoBehaviour
 
     void Top(int x, int y) {
 
-       
+
         if (GetTileBase(x - 1, y) == oceanTile && GetTileBase(x + 1, y) == oceanTile && GetTileBase(x, y - 1) == oceanTile && GetTileBase(x + 1, y - 1) == IslandTile)
         {
             mapl2.SetTile(new Vector3Int(x, y, 0), IslandOceanTransistionTileCornerInNW);
@@ -126,6 +129,9 @@ public class MapGeneration : MonoBehaviour
         else if (GetTileBase(x + 1, y) == IslandTile)
         {
             mapl2.SetTile(new Vector3Int(x, y, 0), IslandOceanTransistionTileRight);
+        }
+        else {
+            Colisionmap.SetTile(new Vector3Int(x, y, 0), oceanTile);
         }
 
     }
@@ -158,6 +164,10 @@ public class MapGeneration : MonoBehaviour
         else if (GetTileBase(x + 1, y) == IslandTile)
         {
             mapl2.SetTile(new Vector3Int(x, y, 0), IslandOceanTransistionTileRight);
+        }
+        else
+        {
+            Colisionmap.SetTile(new Vector3Int(x, y, 0), oceanTile);
         }
     }
 
