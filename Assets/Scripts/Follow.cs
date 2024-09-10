@@ -5,6 +5,8 @@ using UnityEngine;
 public class Follow : MonoBehaviour
 {
     public GameObject player;
+    public GameObject boat;
+    public Vector3 pos;
     [SerializeField]
     private float speed = 2f;
     // Start is called before the first frame update
@@ -16,7 +18,9 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
+        if (!Dock.docked) {  pos = Vector3.MoveTowards(gameObject.transform.position, boat.transform.position, speed * Time.deltaTime); }
+        else {  pos = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed * Time.deltaTime); }
         gameObject.transform.position = new Vector3(pos.x, pos.y, -10);
+
     }
 }

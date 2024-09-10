@@ -48,14 +48,16 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 movementVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        if (!Dock.docked) {
+            Vector2 movementVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
 
-        float curAngle = transform.eulerAngles.z;
-        Vector2 currentMovementVec = AngleToVector(curAngle + 90);
-        velocity += accelerationMultiplier * movementVec.y;
-        velocity = Mathf.Clamp(velocity, minVelocity, maxVelocity);
-        rb.velocity = currentMovementVec * velocity;
-        rb.angularVelocity = -movementVec.x * angularVelocity * velocity;
+            float curAngle = transform.eulerAngles.z;
+            Vector2 currentMovementVec = AngleToVector(curAngle + 90);
+            velocity += accelerationMultiplier * movementVec.y;
+            velocity = Mathf.Clamp(velocity, minVelocity, maxVelocity);
+            rb.velocity = currentMovementVec * velocity;
+            rb.angularVelocity = -movementVec.x * angularVelocity * velocity;
+        }
     }
 
     Vector2 AngleToVector(float angleDeg)

@@ -6,24 +6,31 @@ public static class PlayerStats
 {
     private static float health = 100;
     private static float maxHealth = 100;
-
     public static float GetHealth() { 
         return health;
     }
-
+    
+       
+    
     public static void ChangeHealth(float amount)
     {
         health += amount;
         health = Mathf.Clamp(health, 0, maxHealth);
-
+        UpdateStats();
         if (health == 0) {
             GameState.gameOver = true;
         }
+        
     }
 
     public static void SetHealth(float amount)
     {
         health = amount;
+        UpdateStats();
+    }
+
+    public static void UpdateStats() {
+        GameObject.Find("hearthValue").GetComponent<TMP_Text>().text = (health).ToString();
     }
 }
 
