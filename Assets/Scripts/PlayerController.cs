@@ -79,5 +79,10 @@ public class PlayerController : MonoBehaviour
             Vector2 deltaVelocity = enemyVelocity + rb.velocity;
             collision.gameObject.GetComponent<EnemyController>().ChangeHealthAmount(-10);
         }
+        else if (collision.gameObject.tag.Equals("Land"))
+        {
+            //TODO: take speed and direction into account
+            PlayerStats.ChangeHealth(-10);
+        }
     }
 }
