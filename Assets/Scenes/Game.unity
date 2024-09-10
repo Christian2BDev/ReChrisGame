@@ -1031,6 +1031,7 @@ GameObject:
   - component: {fileID: 705089377}
   - component: {fileID: 705089378}
   - component: {fileID: 705089379}
+  - component: {fileID: 705089380}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1087,6 +1088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6576b278dc1974d86ab4dc7122531d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starMap: {fileID: 705089380}
   map: {fileID: 1477265826}
   mapl2: {fileID: 1251447240}
   copymap: {fileID: 1310315557}
@@ -1104,8 +1106,6 @@ MonoBehaviour:
   IslandOceanTransistionTileCornerInOZ: {fileID: 11400000, guid: 7b4b78f40fd4b4edc9387cfead79d4c7, type: 2}
   IslandOceanTransistionTileCornerInZW: {fileID: 11400000, guid: 9868fe5b47b4b41d6bf72e6902e49e91, type: 2}
   IslandOceanTransistionTileCornerInNW: {fileID: 11400000, guid: 12800634fe4194e0cb8f57a042c62f0b, type: 2}
-  mapWidth: 100
-  mapHeight: 100
   scale: 10
   waterline: 0.65
   noiseXOffset: -1
@@ -1206,6 +1206,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &705089380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705089374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea9204031be45e4f859fb01a02f380c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landTiles: {fileID: 1251447240}
 --- !u!1 &743010948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,7 +2454,7 @@ GameObject:
   - component: {fileID: 1251447243}
   m_Layer: 0
   m_Name: IslandLayer
-  m_TagString: Untagged
+  m_TagString: Land
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

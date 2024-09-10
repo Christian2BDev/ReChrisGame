@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class MapGeneration : MonoBehaviour
 {
+    [SerializeField]
+    AStarMap starMap;
+
     public Tilemap map;
     public Tilemap mapl2;
     public Tilemap copymap;
@@ -21,8 +24,8 @@ public class MapGeneration : MonoBehaviour
     public TileBase IslandOceanTransistionTileCornerInZW;
     public TileBase IslandOceanTransistionTileCornerInNW;
 
-    [SerializeField] int mapWidth = 100;
-    [SerializeField] int mapHeight = 100;
+    [SerializeField] public static int mapWidth = 100;
+    [SerializeField] public static int mapHeight = 100;
 
     [SerializeField] float scale = 10f;
     [SerializeField] float waterline = 0.6f;
@@ -39,6 +42,7 @@ public class MapGeneration : MonoBehaviour
             noiseYOffset = Random.Range(0, 10000);
         }
         GenerateMap();
+        starMap.GenerateAStarMap();
     }
 
     void GenerateMap() {
@@ -125,10 +129,6 @@ public class MapGeneration : MonoBehaviour
 
     }
 
-
-
-
-
     void Bottom(int x, int y)
     {
         if (GetTileBase(x - 1, y) == oceanTile && GetTileBase(x + 1, y) == oceanTile && GetTileBase(x, y + 1) == oceanTile && GetTileBase(x + 1, y + 1) == IslandTile) {
@@ -158,14 +158,7 @@ public class MapGeneration : MonoBehaviour
         {
             mapl2.SetTile(new Vector3Int(x, y, 0), IslandOceanTransistionTileRight);
         }
-
-
-
-
     }
-
-
-
 
     public TileBase GetTileBase(int x, int y) {
 
