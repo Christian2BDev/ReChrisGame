@@ -28,7 +28,6 @@ public class Dock : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(dockPosition);
         if (Input.GetKeyDown(KeyCode.E) && dockingPossible)
         {
             if (!docked)
