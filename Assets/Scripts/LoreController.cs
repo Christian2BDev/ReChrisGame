@@ -23,7 +23,6 @@ public class LoreController : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(loreState);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class EnemyController : MonoBehaviour
 
     Vector2 playerPosAtPosPickedMoment;
 
+    [SerializeField]
+    NavMeshAgent agent;
+
     private void Start()
     {
         GetPlayerReference();
@@ -56,18 +60,7 @@ public class EnemyController : MonoBehaviour
             targetMovePos = new Vector2(player.transform.position.x + randomXDeviation, player.transform.position.y + randomyDeviation);
         }
         playerPosAtPosPickedMoment = player.transform.position;
-    }
-
-    private void Update()
-    {
-        if (rb.velocity != Vector2.zero)
-        {
-            // Get the angle in degrees based on the velocity direction
-            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-
-            // Subtract 90 degrees to make the top of the sprite face the direction of movement
-            transform.rotation = Quaternion.Euler(0, 0, angle - 90);
-        }
+        agent.SetDestination(targetMovePos);
     }
 
     private void FixedUpdate()
@@ -92,9 +85,6 @@ public class EnemyController : MonoBehaviour
         {
             PickTargetMovePos();
         }
-
-        Vector2 targetVelocity = ((Vector3)targetMovePos - transform.position).normalized * speed;
-        rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, smoothTime);
     }
 
     public void ChangeHealthAmount(float amount)

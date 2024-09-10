@@ -1,10 +1,11 @@
 using UnityEngine.Tilemaps;
 using UnityEngine;
+using NavMeshPlus.Components;
 
 public class MapGeneration : MonoBehaviour
 {
     [SerializeField]
-    AStarMap starMap;
+    NavMeshSurface mesh;
 
     public Tilemap map;
     public Tilemap mapl2;
@@ -24,8 +25,8 @@ public class MapGeneration : MonoBehaviour
     public TileBase IslandOceanTransistionTileCornerInZW;
     public TileBase IslandOceanTransistionTileCornerInNW;
 
-    [SerializeField] public static int mapWidth = 100;
-    [SerializeField] public static int mapHeight = 100;
+    [SerializeField] int mapWidth = 100;
+    [SerializeField] int mapHeight = 100;
 
     [SerializeField] float scale = 10f;
     [SerializeField] float waterline = 0.6f;
@@ -42,7 +43,7 @@ public class MapGeneration : MonoBehaviour
             noiseYOffset = Random.Range(0, 10000);
         }
         GenerateMap();
-        starMap.GenerateAStarMap();
+        mesh.BuildNavMesh();
     }
 
     void GenerateMap() {
