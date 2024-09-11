@@ -11,7 +11,6 @@ public class Dock : MonoBehaviour
     public GameObject player;
     public BoxCollider2D playerCol;
     public TilemapCollider2D seaCol;
-    public TilemapCollider2D islandCol;
     public PolygonCollider2D boatCol;
     Vector3 dockPosition;
 
@@ -37,22 +36,20 @@ public class Dock : MonoBehaviour
         {
             if (!docked)
             {
+                //Disable collisions between player and land
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Land"), true);
                 playerCol.enabled = true;
-                seaCol.enabled = true;
-                islandCol.enabled = false;
                 boatCol.enabled = false;
                 player.transform.position = dockPosition;
             }
             else {
+                //Enable collisions between player and land
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Land"), false);
                 player.transform.position = transform.position;
                 playerCol.enabled = false;
-                seaCol.enabled = false;
-                islandCol.enabled = true;
                 boatCol.enabled = true;
             }
             docked = !docked;
-            Debug.Log("Dock");
-
         }
     }
 

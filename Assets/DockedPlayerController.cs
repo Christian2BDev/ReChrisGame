@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class DockedPlayerController : MonoBehaviour
 {
@@ -11,11 +12,9 @@ public class DockedPlayerController : MonoBehaviour
     [SerializeField] float Speed = 20.0f;
     [SerializeField] Collider2D lastCollider;
     [SerializeField]  bool canHarvest;
+    [SerializeField]  TilemapCollider2D landCollider;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Item"))
@@ -42,15 +41,24 @@ public class DockedPlayerController : MonoBehaviour
         {
             lastCollider.gameObject.GetComponent<ItemCollector>().Damage(1);
         }
+
+        if (Dock.docked)
+        {
+            if (!landCollider.OverlapPoint(transform.position))
+            {
+                Debug.Log("Not on colider");
+                transform.position = landCollider.ClosestPoint(transform.position);
+            }
+        }
     }
 
     void FixedUpdate()
     {
-        movement(); 
+        Movement(); 
     }
 
 
-    void movement()
+    void Movement()
     {
         if (Dock.docked)
         {

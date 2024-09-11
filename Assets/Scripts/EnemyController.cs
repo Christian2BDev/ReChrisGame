@@ -11,16 +11,13 @@ public class EnemyController : MonoBehaviour
     float health = 25;
 
     [SerializeField]
-    Rigidbody2D rb;
-
-    [SerializeField]
-    float speed;
+    float speed = 0.7f;
 
     [SerializeField]
     float stopDistance = 0.1f;
 
     [SerializeField]
-    float newPickMoveDistance = 4f;
+    float newPickMoveDistance = 1f;
 
     GameObject player;
 
@@ -31,8 +28,6 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     NavMeshAgent agent;
-
-    NavMeshSurface surface;
 
     private void Start()
     {

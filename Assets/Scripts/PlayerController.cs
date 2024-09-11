@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -55,12 +56,15 @@ public class PlayerController : MonoBehaviour
         }
         
         Vector2 movementVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-
         float curAngle = transform.eulerAngles.z;
         Vector2 currentMovementVec = AngleToVector(curAngle + 90);
         float multiplier = currentMovementVec.y < 0 ? accelerationMultiplier : decelerationMultiplier;
         velocity += multiplier * movementVec.y;
         velocity = Mathf.Clamp(velocity, minVelocity, maxVelocity);
+        if(movementVec.y == 0)
+        {
+            rb.velocity = rb.velocity / 2 * Time.fixedDeltaTime;
+        }
         rb.velocity = currentMovementVec * velocity;
         rb.angularVelocity = -movementVec.x * angularVelocity * velocity;
     }
