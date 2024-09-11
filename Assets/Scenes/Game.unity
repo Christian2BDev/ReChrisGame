@@ -4716,8 +4716,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1878816265}
   boat: {fileID: 1879529524}
-  moveLimiter: 0.1
-  Speed: 6
+  moveLimiter: 0.01
+  Speed: 4
   lastCollider: {fileID: 0}
   canHarvest: 0
   landCollider: {fileID: 1251447243}
