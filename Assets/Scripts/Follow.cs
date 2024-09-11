@@ -18,9 +18,15 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Dock.docked) {  pos = Vector3.MoveTowards(gameObject.transform.position, boat.transform.position, speed * Time.deltaTime); }
-        else {  pos = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed * Time.deltaTime); }
-        gameObject.transform.position = new Vector3(pos.x, pos.y, -10);
+        if (!Dock.docked) {
+            pos = Vector3.MoveTowards(gameObject.transform.position, boat.transform.position, speed * Time.deltaTime);
+            gameObject.transform.position = new Vector3(pos.x, pos.y, -7.5f);
+        }
+        else {
+            pos = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
+            gameObject.transform.position = new Vector3(pos.x, pos.y, -5);
+        }
+        
 
     }
 }
