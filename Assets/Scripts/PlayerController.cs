@@ -50,7 +50,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (Dock.docked) {
+            velocity = 0;
             rb.velocity = new Vector2(0, 0);
+            rb.angularVelocity = 0;
             return;
             
         }

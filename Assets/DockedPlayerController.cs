@@ -46,7 +46,6 @@ public class DockedPlayerController : MonoBehaviour
         {
             if (!landCollider.OverlapPoint(transform.position))
             {
-                Debug.Log("Not on colider");
                 transform.position = landCollider.ClosestPoint(transform.position);
             }
         }

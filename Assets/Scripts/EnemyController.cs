@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
         player = PlayerController.playerReference;
     }
 
-    void PickTargetMovePos(bool pickPlayerCentre = false) {
+    void PickTargetMovePos(bool pickPlayerSide = false) {
         if (player == null)
         {
             GetPlayerReference();
@@ -48,9 +48,12 @@ public class EnemyController : MonoBehaviour
         float randomXDeviation = Random.Range(-3.5f, 3.5f);
         float randomyDeviation = Random.Range(-3.5f, 3.5f);
         //TODO: pick a point at the side of the boat instead of trying to crash into the player
-        if(pickPlayerCentre)
+        if(pickPlayerSide)
         {
-            targetMovePos = player.transform.position;
+            Vector2 moveDirectionVector = player.GetComponent<Rigidbody2D>().velocity.normalized;
+            float moveDirection = player.transform.eulerAngles.z + 90;
+            moveDirection = Random.Range(0, 2) == 0 ? moveDirection + 90 : moveDirection - 90;
+            targetMovePos = (Vector2)player.transform.position + AngleToVector(moveDirection);
         }
         else
         {
@@ -92,5 +95,12 @@ public class EnemyController : MonoBehaviour
     public void ChangeHealthAmount(float amount)
     {
         health -= amount;
+    }
+
+    Vector2 AngleToVector(float angleDeg)
+    {
+        float rad = angleDeg * Mathf.Deg2Rad;
+
+        return new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
     }
 }
