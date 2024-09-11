@@ -8,6 +8,9 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
+    List<Transform> cannonPoints;
+
+    [SerializeField]
     float health = 25;
 
     [SerializeField]
@@ -29,10 +32,30 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     NavMeshAgent agent;
 
+    [SerializeField]
+    int maxCannonsPerSecond = 1;
+
+    int cannonsShotLastSecond;
+
+    float passedTime;
+
     private void Start()
     {
+        cannonPoints = GetChildrenWithName(transform, "CannonPoint");
         GetPlayerReference();
         PickTargetMovePos();
+    }
+
+    private void Update()
+    {
+        passedTime += Time.deltaTime;
+        if(passedTime > 1)
+        {
+            passedTime = 0;
+            cannonsShotLastSecond = 0;
+        }
+
+
     }
 
     void GetPlayerReference()
@@ -102,5 +125,23 @@ public class EnemyController : MonoBehaviour
         float rad = angleDeg * Mathf.Deg2Rad;
 
         return new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+    }
+
+    List<Transform> GetChildrenWithName(Transform parent, string name)
+    {
+        List<Transform> matchingChildren = new List<Transform>();
+
+        foreach (Transform child in parent)
+        {
+            if (child.name == name)
+            {
+                matchingChildren.Add(child);
+            }
+
+            // Recursive call for grandchildren and deeper children
+            matchingChildren.AddRange(GetChildrenWithName(child, name));
+        }
+
+        return matchingChildren;
     }
 }
