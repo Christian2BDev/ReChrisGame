@@ -1,6 +1,9 @@
 using UnityEngine.Tilemaps;
+
 using UnityEngine;
 using NavMeshPlus.Components;
+using System;
+using System.Collections.Generic;
 
 public class MapGeneration : MonoBehaviour
 {
@@ -25,7 +28,8 @@ public class MapGeneration : MonoBehaviour
     public TileBase IslandOceanTransistionTileCornerInZW;
     public TileBase IslandOceanTransistionTileCornerInNW;
 
-    public GameObject tree;
+    public List<GameObject> Items= new List<GameObject>();
+    public GameObject ItemParent;
 
     [SerializeField] int mapWidth = 100;
     [SerializeField] int mapHeight = 100;
@@ -41,8 +45,8 @@ public class MapGeneration : MonoBehaviour
     void Start()
     {
         if (noiseXOffset == -1 && noiseYOffset == -1) {
-            noiseXOffset = Random.Range(0, 10000);
-            noiseYOffset = Random.Range(0, 10000);
+            noiseXOffset = UnityEngine.Random.Range(0, 10000);
+            noiseYOffset = UnityEngine.Random.Range(0, 10000);
         }
         GenerateMap();
         mesh.BuildNavMesh();
@@ -99,9 +103,11 @@ public class MapGeneration : MonoBehaviour
                
                 if (GetTileBase(x, y) == IslandTile)
                 {
-                    if (Random.Range(0,20) == 1)
+                    if (UnityEngine.Random.Range(0,20) == 1)
                     {
-                    Instantiate(tree, new Vector3Int(x - 50, y - 50, 0), Quaternion.Euler(0, 0, 0));
+                        
+                        //Instantiate(tree, new Vector3Int(x - 50, y - 50, 0), Quaternion.Euler(0, 0, 0));
+                        Instantiate(Items[UnityEngine.Random.Range(0, Items.Count - 1)], new Vector3Int(x - 50, y - 50, 0), Quaternion.Euler(0, 0, 0), ItemParent.transform);
                     }
                 }
 
