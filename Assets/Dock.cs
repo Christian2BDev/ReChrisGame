@@ -17,7 +17,7 @@ public class Dock : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log(dockPosition);
+        
         if (collision.name.Equals("IslandLayer") && !docked)
         {
             dockPosition = collision.ClosestPoint(player.transform.position); 

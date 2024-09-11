@@ -26,6 +26,8 @@ public class MapGeneration : MonoBehaviour
     public TileBase IslandOceanTransistionTileCornerInZW;
     public TileBase IslandOceanTransistionTileCornerInNW;
 
+    public GameObject tree;
+
     [SerializeField] int mapWidth = 100;
     [SerializeField] int mapHeight = 100;
 
@@ -63,10 +65,15 @@ public class MapGeneration : MonoBehaviour
                     copymap.SetTile(new Vector3Int(x, y, 0), IslandTile);
                     mapl2.SetTile(new Vector3Int(x, y, 0), IslandTile);
                 }
-                else {
+                else
+                {
                     map.SetTile(new Vector3Int(x, y, 0), oceanTile);
                     copymap.SetTile(new Vector3Int(x, y, 0), oceanTile);
                 }
+
+                
+                   
+                
             }
         }
         ShapeMap();
@@ -89,10 +96,16 @@ public class MapGeneration : MonoBehaviour
                 {
                     Bottom(x,y);
                 }
-              
-                   
-              
-                
+
+               
+                if (GetTileBase(x, y) == IslandTile)
+                {
+                    if (Random.Range(0,20) == 1)
+                    {
+                    Instantiate(tree, new Vector3Int(x - 50, y - 50, 0), Quaternion.Euler(0, 0, 0));
+                    }
+                }
+
             }
         }
     }
