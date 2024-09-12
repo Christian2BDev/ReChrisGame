@@ -10,8 +10,6 @@ public static class PlayerStats
         return health;
     }
     
-       
-    
     public static void ChangeHealth(float amount)
     {
         health += amount;

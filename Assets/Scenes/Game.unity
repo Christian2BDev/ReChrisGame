@@ -1213,7 +1213,7 @@ Transform:
   m_GameObject: {fileID: 254854592}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 12.8, y: -17.2, z: 0}
+  m_LocalPosition: {x: -7.8, y: 8.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8671,7 +8671,7 @@ Transform:
   m_GameObject: {fileID: 2014218534}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8806,6 +8806,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonPoints: []
+  cannonBall: {fileID: 8828127669815679558, guid: e2b425b8b99cbbc4f9da839c8cf60028, type: 3}
+  maxShootDistance: 5
   health: 25
   speed: 0.7
   stopDistance: 0.3

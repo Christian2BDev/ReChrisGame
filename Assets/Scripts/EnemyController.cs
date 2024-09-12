@@ -4,11 +4,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     List<Transform> cannonPoints;
+
+    [SerializeField]
+    GameObject cannonBall;
+
+    [SerializeField]
+    float maxShootDistance = 2;
 
     [SerializeField]
     float health = 25;
@@ -41,6 +48,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        //agent.updateRotation = false;
         cannonPoints = GetChildrenWithName(transform, "CannonPoint");
         GetPlayerReference();
         PickTargetMovePos();
@@ -48,6 +56,11 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        //Vector2 agentDir = agent.
+        //float angle = Mathf.Atan2(agent.velocity.y, agent.velocity.x) * Mathf.Rad2Deg - 90;
+        //Debug.Log(angle);
+        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        //transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, Mathf.Lerp(agent.velocity.x, transform.position.x, Time.deltaTime) - 90));
         passedTime += Time.deltaTime;
         if(passedTime > 1)
         {
@@ -55,7 +68,28 @@ public class EnemyController : MonoBehaviour
             cannonsShotLastSecond = 0;
         }
 
+        if(cannonsShotLastSecond >= maxCannonsPerSecond)
+        {
+            return;
+        }
 
+        if(Vector2.Distance(transform.position, player.transform.position) > maxShootDistance)
+        {
+            return;
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, maxShootDistance, LayerMask.GetMask("Player"));
+        if (hit.collider == null)
+        {
+            return;
+        }
+        if (maxCannonsPerSecond * passedTime - 1 < cannonsShotLastSecond)
+        {
+            GameObject cannonBallClone = Instantiate(cannonBall);
+            Vector2 controlPoint = new Vector2(player.transform.position.x, player.transform.position.y + 1);
+            cannonBallClone.gameObject.GetComponent<CannonBallBehaviour>().StartCannonBallRoute(transform.position, player.transform.position, controlPoint, hit.distance);
+            cannonsShotLastSecond += 1;
+        }
     }
 
     void GetPlayerReference()

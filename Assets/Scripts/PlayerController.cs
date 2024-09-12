@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             rb.angularVelocity = 0;
             return;
-            
         }
         
         Vector2 movementVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
