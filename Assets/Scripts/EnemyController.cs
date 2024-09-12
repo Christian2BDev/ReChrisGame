@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour
     float stopDistance = 0.1f;
 
     [SerializeField]
-    float newPickMoveDistance = 1f;
+    float newPickMoveDistance = 2f;
 
     GameObject player;
 
@@ -143,7 +143,6 @@ public class EnemyController : MonoBehaviour
         //TODO: pick a point at the side of the boat instead of trying to crash into the player
         if(pickPlayerSide)
         {
-            Vector2 moveDirectionVector = player.GetComponent<Rigidbody2D>().velocity.normalized;
             float moveDirection = player.transform.eulerAngles.z + 90;
             moveDirection = Random.Range(0, 2) == 0 ? moveDirection + 90 : moveDirection - 90;
             targetMovePos = (Vector2)player.transform.position + AngleToVector(moveDirection);

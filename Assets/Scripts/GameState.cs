@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using static UnityEngine.GraphicsBuffer;
@@ -35,7 +36,6 @@ public class GameState : MonoBehaviour
  
     private void Start()
     {
-        
         v = postProccesing.GetComponent<Volume>();
         v.profile.TryGet(out vg);
         v.profile.TryGet(out ca);

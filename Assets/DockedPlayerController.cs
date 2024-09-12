@@ -27,10 +27,10 @@ public class DockedPlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-             RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 99999999,ask);
-            if (hit.collider != null && hit.collider.gameObject.tag.Equals("Item")&& Vector2.Distance(hit.collider.gameObject.transform.position, transform.position) <= HarvestRange)
+            RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 99999999,ask);
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("Item") && Vector2.Distance(hit.collider.gameObject.transform.position, transform.position) <= HarvestRange)
             {
-                    hit.collider.gameObject.GetComponent<ItemCollector>().Damage(1);
+                hit.collider.gameObject.GetComponent<ItemCollector>().Damage(1);
             }
 
         }
@@ -42,7 +42,6 @@ public class DockedPlayerController : MonoBehaviour
                 transform.position = landCollider.ClosestPoint(transform.position);
             }
         }
-
     }
 
     void FixedUpdate()
