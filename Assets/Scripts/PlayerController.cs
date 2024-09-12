@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             PlayerStats.ChangeHealth(-10);
-            //Vector2 enemyVelocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
-            //Vector2 deltaVelocity = enemyVelocity + rb.velocity;
             collision.gameObject.GetComponent<EnemyController>().ChangeHealthAmount(-10);
         }
         else if (collision.gameObject.CompareTag("Land"))

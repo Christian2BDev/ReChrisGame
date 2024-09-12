@@ -9,10 +9,19 @@ using UnityEngine.UIElements;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    List<Transform> cannonPoints;
+    List<Transform> cannonPointsLeft;
+
+    [SerializeField]
+    List<Transform> cannonPointsRight;
+
+    int lastCannonUsedRight = 0;
+    int lastCannonUsedLeft = 1;
 
     [SerializeField]
     GameObject cannonBall;
+
+    [SerializeField]
+    PolygonCollider2D boatCollider;
 
     [SerializeField]
     float maxShootDistance = 2;
@@ -40,37 +49,28 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
 
     [SerializeField]
-    int maxCannonsPerSecond = 1;
-
-    int cannonsShotLastSecond;
+    float minDelayBetweenShots = 1;
+    float timeToShoot;
 
     float passedTime;
 
     private void Start()
     {
         //agent.updateRotation = false;
-        cannonPoints = GetChildrenWithName(transform, "CannonPoint");
+        cannonPointsLeft = GetChildrenWithName(transform, "CannonPointLeft");
+        cannonPointsRight = GetChildrenWithName(transform, "CannonPointRight");
         GetPlayerReference();
         PickTargetMovePos();
     }
 
     private void Update()
     {
-        //Vector2 agentDir = agent.
-        //float angle = Mathf.Atan2(agent.velocity.y, agent.velocity.x) * Mathf.Rad2Deg - 90;
-        //Debug.Log(angle);
-        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        //transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, Mathf.Lerp(agent.velocity.x, transform.position.x, Time.deltaTime) - 90));
+        //Code used to shoot cannonballs from the enemy side
         passedTime += Time.deltaTime;
-        if(passedTime > 1)
+        if(timeToShoot == -1)
         {
             passedTime = 0;
-            cannonsShotLastSecond = 0;
-        }
-
-        if(cannonsShotLastSecond >= maxCannonsPerSecond)
-        {
-            return;
+            timeToShoot = Random.Range(minDelayBetweenShots, minDelayBetweenShots * 4);
         }
 
         if(Vector2.Distance(transform.position, player.transform.position) > maxShootDistance)
@@ -83,12 +83,48 @@ public class EnemyController : MonoBehaviour
         {
             return;
         }
-        if (maxCannonsPerSecond * passedTime - 1 < cannonsShotLastSecond)
+        if (passedTime >= timeToShoot)
         {
+            float beginEndDistance = Vector2.Distance(player.transform.position, transform.position);
+            Vector2 playerDirectionVector = (player.transform.position - transform.position).normalized;
+            //check if the player is at the side of the turrets
+            float playerDirection = (Mathf.Atan2(playerDirectionVector.y, playerDirectionVector.x) * Mathf.Rad2Deg) + 90;
+            Vector2 useCannonPoint;
+            if(playerDirection < -10 && playerDirection > -150)
+            {
+                lastCannonUsedLeft++;
+                if(lastCannonUsedLeft > cannonPointsLeft.Count - 1)
+                {
+                    lastCannonUsedLeft = 0;
+                }
+                useCannonPoint = cannonPointsLeft[lastCannonUsedLeft].position;
+            }
+            else if (playerDirection > 10 && playerDirection < 150)
+            {
+                lastCannonUsedRight++;
+                if (lastCannonUsedRight > cannonPointsRight.Count - 1)
+                {
+                    lastCannonUsedRight = 0;
+                }
+                useCannonPoint = cannonPointsRight[lastCannonUsedRight].position;
+            }
+            else
+            {
+                return;
+            }
             GameObject cannonBallClone = Instantiate(cannonBall);
-            Vector2 controlPoint = new Vector2(player.transform.position.x, player.transform.position.y + 1);
-            cannonBallClone.gameObject.GetComponent<CannonBallBehaviour>().StartCannonBallRoute(transform.position, player.transform.position, controlPoint, hit.distance);
-            cannonsShotLastSecond += 1;
+            Vector2 controlPoint = new Vector2(player.transform.position.x, player.transform.position.y + (beginEndDistance / 3));
+            float randomXdeviation = Random.Range(-beginEndDistance / 2, beginEndDistance / 2);
+            float randomYdeviation = Random.Range(-beginEndDistance / 2, beginEndDistance / 2);
+            Vector2 endPos = new Vector2(player.transform.position.x + randomXdeviation, player.transform.position.y + randomYdeviation);
+            //Set the end point to the player's transform if the endPos happens to be on the enemy itself
+            if(boatCollider.OverlapPoint(endPos))
+            {
+                endPos = player.transform.position;
+            }
+            cannonBallClone.GetComponent<CannonBallBehaviour>().StartCannonBallRoute(useCannonPoint, endPos, controlPoint, Vector2.Distance(transform.position, endPos));
+            timeToShoot = -1;
+            passedTime = 0;
         }
     }
 

@@ -13,6 +13,8 @@ public class Dock : MonoBehaviour
     public PolygonCollider2D boatCol;
     
     Vector3 dockPosition;
+    [SerializeField]
+    Rigidbody2D playerRigidBody;
 
     public void OnTriggerStay2D(Collider2D collision)
     {
@@ -36,14 +38,16 @@ public class Dock : MonoBehaviour
         {
             if (!docked)
             {
+                playerRigidBody.constraints = RigidbodyConstraints2D.FreezePosition;
                 //Disable collisions between player and land
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Land"), true);
                 playerCol.enabled = true;
                 //boatCol.enabled = false;
                 player.transform.position = dockPosition;
-               
+
             }
             else {
+                playerRigidBody.constraints = RigidbodyConstraints2D.None;
                 //Enable collisions between player and land
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Land"), false);
                 player.transform.position = transform.position;
@@ -53,5 +57,4 @@ public class Dock : MonoBehaviour
             docked = !docked;
         }
     }
-
 }
