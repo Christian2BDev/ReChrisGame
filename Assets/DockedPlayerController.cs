@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
@@ -10,42 +11,28 @@ public class DockedPlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject boat;
     public Animator anim;
+    public Camera cam;
 
-    [SerializeField]float moveLimiter = 0.7f;
+    [SerializeField] float moveLimiter = 0.7f;
     [SerializeField] float Speed = 20.0f;
-    [SerializeField] Collider2D lastCollider;
-    [SerializeField]  bool canHarvest;
-    [SerializeField]  TilemapCollider2D landCollider;
+    [SerializeField] bool canHarvest;
+    [SerializeField] TilemapCollider2D landCollider;
+    [SerializeField] float HarvestRange = 2f;
+    public LayerMask ask;
 
     float horizontal;
     float vertical;
-    // Start is called before the first frame update
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Item"))
-        {
-            canHarvest = true;
-            lastCollider = collision;
-        }
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Item"))
-        {
-            canHarvest = false;
-            lastCollider = null;
-        }
-
-    }
 
     private void Update()
     {
-        if (canHarvest && Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            lastCollider.gameObject.GetComponent<ItemCollector>().Damage(1);
+             RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 99999999,ask);
+            if (hit.collider != null && hit.collider.gameObject.tag.Equals("Item")&& Vector2.Distance(hit.collider.gameObject.transform.position, transform.position) <= HarvestRange)
+            {
+                    hit.collider.gameObject.GetComponent<ItemCollector>().Damage(1);
+            }
+
         }
 
         if (Dock.docked)
@@ -55,11 +42,12 @@ public class DockedPlayerController : MonoBehaviour
                 transform.position = landCollider.ClosestPoint(transform.position);
             }
         }
+
     }
 
     void FixedUpdate()
     {
-        Movement(); 
+        Movement();
     }
 
 
@@ -79,7 +67,7 @@ public class DockedPlayerController : MonoBehaviour
         else
         {
             transform.localPosition = new Vector3(0,-1,0);
-            //transform.position = boat.transform.position;
+            
         }
     }
 
