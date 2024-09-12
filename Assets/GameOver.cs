@@ -12,6 +12,7 @@ public class GameObjectActivator : MonoBehaviour
             objectToActivate.SetActive(true);
             GameState.gameOver = false;
             PlayerStats.SetHealth(100);
+            LoreController.loreState = 1;
         }
  
     }
