@@ -7,7 +7,8 @@ public class mainmenu : MonoBehaviour
 {
   public void playgame ()
     {
-        SceneManager.LoadScene("Game");
+        Transition.FadeToLevel("Game");
+        //SceneManager.LoadScene("Game");
     }
 
    public void stopgame()

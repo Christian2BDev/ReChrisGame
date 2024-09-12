@@ -37,6 +37,7 @@ public class Follow : MonoBehaviour
             }
         }
         else {
+            
             pos = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
             camDistance = Mathf.MoveTowards(camDistance, LandCamDis, (1 / ZoomSpeed) * Time.deltaTime);
             gameObject.transform.position = new Vector3(pos.x, pos.y,camDistance);

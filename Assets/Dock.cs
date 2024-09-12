@@ -39,15 +39,16 @@ public class Dock : MonoBehaviour
                 //Disable collisions between player and land
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Land"), true);
                 playerCol.enabled = true;
-                boatCol.enabled = false;
+                //boatCol.enabled = false;
                 player.transform.position = dockPosition;
+               
             }
             else {
                 //Enable collisions between player and land
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Land"), false);
                 player.transform.position = transform.position;
                 playerCol.enabled = false;
-                boatCol.enabled = true;
+                //boatCol.enabled = true;
             }
             docked = !docked;
         }
