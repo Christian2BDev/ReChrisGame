@@ -2437,7 +2437,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'wafe''s survived:
+  m_text: 'wave''s survived:
 
     0'
   m_isRightToLeft: 0
