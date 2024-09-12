@@ -1870,7 +1870,7 @@ GameObject:
   - component: {fileID: 458426752}
   - component: {fileID: 458426751}
   m_Layer: 5
-  m_Name: wafe
+  m_Name: wave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2392,7 +2392,7 @@ GameObject:
   - component: {fileID: 630821986}
   - component: {fileID: 630821985}
   m_Layer: 5
-  m_Name: wafe's
+  m_Name: waves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2437,7 +2437,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'wave''s survived:
+  m_text: 'waves survived:
 
     0'
   m_isRightToLeft: 0
