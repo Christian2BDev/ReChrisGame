@@ -28,7 +28,7 @@ public class GameState : MonoBehaviour
     float duration = 7.5f;
     [SerializeField]
     float value = 0;
-    
+
 
     [SerializeField]
     public static bool gameOver = false;
