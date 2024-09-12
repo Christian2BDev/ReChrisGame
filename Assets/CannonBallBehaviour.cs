@@ -38,8 +38,18 @@ public class CannonBallBehaviour : MonoBehaviour
 
         if(t >= 1)
         {
-            Debug.Log("Cannonball landed, apply damage");
-            Destroy(transform.gameObject);
+            CannonBallStopped();
         }
+    }
+
+    private void CannonBallStopped()
+    {
+        PolygonCollider2D boatCollider = PlayerController.playerReference.GetComponent<PolygonCollider2D>();
+
+        if (boatCollider.OverlapPoint(transform.position))
+        {
+            PlayerStats.ChangeHealth(-10);
+        }
+        Destroy(transform.gameObject);
     }
 }
