@@ -23,6 +23,9 @@ public class EnemyController : MonoBehaviour
     float maxShootDistance = 2;
 
     [SerializeField]
+    float maxHealth = 25;
+
+    [SerializeField]
     float health = 25;
 
     [SerializeField]
@@ -43,6 +46,9 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     NavMeshAgent agent;
+
+    [SerializeField]
+    Transform healthBarFill;
 
     [SerializeField]
     float minDelayBetweenShots = 1;
@@ -185,8 +191,11 @@ public class EnemyController : MonoBehaviour
         Debug.Log(health);
         if(health <= 0)
         {
-            Destroy(transform.gameObject);
+            Destroy(transform.parent.gameObject);
         }
+
+        //+ 0.000001f so we never devide by zero, it should never be 0, but just in case
+        healthBarFill.localScale = new Vector3((health + 0.000001f) / maxHealth, healthBarFill.localScale.y, healthBarFill.localScale.z);
     }
 
     Vector2 AngleToVector(float angleDeg)
