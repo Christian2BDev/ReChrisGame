@@ -1,10 +1,6 @@
-using NavMeshPlus.Components;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class EnemyController : MonoBehaviour
 {
@@ -86,11 +82,11 @@ public class EnemyController : MonoBehaviour
         if (passedTime >= timeToShoot)
         {
             float beginEndDistance = Vector2.Distance(player.transform.position, transform.position);
-            Vector2 playerDirectionVector = (player.transform.position - transform.position).normalized;
+            Vector2 playerDirection = (player.transform.position - transform.position);
             //check if the player is at the side of the turrets
-            float playerDirection = (Mathf.Atan2(playerDirectionVector.y, playerDirectionVector.x) * Mathf.Rad2Deg) + 90;
+            float angleToPlayer = Vector2.SignedAngle(agent.velocity.normalized, playerDirection);
             Vector2 useCannonPoint;
-            if(playerDirection < -10 && playerDirection > -150)
+            if(angleToPlayer > 30 && angleToPlayer < 100)
             {
                 lastCannonUsedLeft++;
                 if(lastCannonUsedLeft > cannonPointsLeft.Count - 1)
@@ -99,7 +95,7 @@ public class EnemyController : MonoBehaviour
                 }
                 useCannonPoint = cannonPointsLeft[lastCannonUsedLeft].position;
             }
-            else if (playerDirection > 10 && playerDirection < 150)
+            else if (angleToPlayer < -30 && angleToPlayer > -100)
             {
                 lastCannonUsedRight++;
                 if (lastCannonUsedRight > cannonPointsRight.Count - 1)

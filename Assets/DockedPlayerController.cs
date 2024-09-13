@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class DockedPlayerController : MonoBehaviour
 {

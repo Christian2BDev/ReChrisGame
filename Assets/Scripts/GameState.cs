@@ -1,9 +1,7 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using static UnityEngine.GraphicsBuffer;
 
 public class GameState : MonoBehaviour
 {
