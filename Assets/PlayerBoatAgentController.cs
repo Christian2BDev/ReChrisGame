@@ -14,7 +14,6 @@ public class PlayerBoatAgentController : MonoBehaviour
         //Toggle the agent off, set the position and toggle it on again if the agent got stuck.
         if (Vector3.Distance(agent.transform.localPosition, Vector3.zero) > agentStuckDistance)
         {
-            Debug.Log(Vector3.Distance(agent.transform.localPosition, Vector3.zero));
             agent.enabled = false;
             SetAgentPos();
             agent.enabled = true;

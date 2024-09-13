@@ -10,12 +10,15 @@ public class CannonBallBehaviour : MonoBehaviour
     Vector2 beginPos, endPos, controlPos;
     float travelTime;
     float elapsedTime;
-    public void StartCannonBallRoute(Vector2 _beginPos, Vector2 _endPos, Vector2 _controlPos, float _travelTime)
+
+    bool shotFromPlayer;
+    public void StartCannonBallRoute(Vector2 _beginPos, Vector2 _endPos, Vector2 _controlPos, float _travelTime, bool playerShot = false)
     {
         beginPos = _beginPos;
         controlPos = _controlPos;
         endPos = _endPos;
         travelTime = _travelTime;
+        shotFromPlayer = playerShot;
     }
 
     private void Update()
@@ -42,12 +45,32 @@ public class CannonBallBehaviour : MonoBehaviour
 
     private void CannonBallStopped()
     {
-        PolygonCollider2D boatCollider = PlayerController.playerReference.GetComponent<PolygonCollider2D>();
-
-        if (boatCollider.OverlapPoint(transform.position))
+        Collider2D boatCollider;
+        if(shotFromPlayer)
         {
-            PlayerStats.ChangeHealth(-10);
+            boatCollider = Physics2D.OverlapPoint(transform.position);
+            if(boatCollider == null || !boatCollider.gameObject.CompareTag("Enemy"))
+            {
+                DestroyCannonBall();
+                return;
+            }
+            Debug.Log("hit :)");
+            boatCollider.transform.GetComponent<EnemyController>().ChangeHealthAmount(-10);
         }
+        else
+        {
+            boatCollider = PlayerController.playerReference.GetComponent<PolygonCollider2D>();
+            if (boatCollider.OverlapPoint(transform.position))
+            {
+                PlayerStats.ChangeHealth(-10);
+            }
+        }
+
+        DestroyCannonBall();
+    }
+
+    void DestroyCannonBall()
+    {
         Destroy(transform.gameObject);
     }
 }

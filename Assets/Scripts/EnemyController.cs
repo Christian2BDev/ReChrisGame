@@ -52,7 +52,6 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        //agent.updateRotation = false;
         cannonPointsLeft = GetChildrenWithName(transform, "CannonPointLeft");
         cannonPointsRight = GetChildrenWithName(transform, "CannonPointRight");
         GetPlayerReference();
@@ -109,12 +108,12 @@ public class EnemyController : MonoBehaviour
                 return;
             }
             GameObject cannonBallClone = Instantiate(cannonBall);
-            Vector2 controlPoint = new Vector2(player.transform.position.x, player.transform.position.y + (beginEndDistance / 3));
             float randomXdeviation = Random.Range(-beginEndDistance / 2, beginEndDistance / 2);
             float randomYdeviation = Random.Range(-beginEndDistance / 2, beginEndDistance / 2);
             Vector2 endPos = new Vector2(player.transform.position.x + randomXdeviation, player.transform.position.y + randomYdeviation);
+            Vector2 controlPoint = endPos;
             //Set the end point to the player's transform if the endPos happens to be on the enemy itself
-            if(boatCollider.OverlapPoint(endPos))
+            if (boatCollider.OverlapPoint(endPos))
             {
                 endPos = player.transform.position;
             }
@@ -182,7 +181,12 @@ public class EnemyController : MonoBehaviour
 
     public void ChangeHealthAmount(float amount)
     {
-        health -= amount;
+        health += amount;
+        Debug.Log(health);
+        if(health <= 0)
+        {
+            Destroy(transform.gameObject);
+        }
     }
 
     Vector2 AngleToVector(float angleDeg)
