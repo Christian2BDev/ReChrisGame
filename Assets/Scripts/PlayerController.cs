@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerStats.ChangeHealth(-10);
         }
+        Camera.main.transform.GetComponent<SoundManager>().PlayCrash();
     }
 
     private void FixedUpdate()

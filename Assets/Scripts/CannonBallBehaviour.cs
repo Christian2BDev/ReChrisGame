@@ -50,13 +50,13 @@ public class CannonBallBehaviour : MonoBehaviour
     {
         SoundManager sounds;
         sounds = Camera.main.transform.GetComponent<SoundManager>();
-        Collider2D boatCollider;
+        Collider2D endCollider;
         if(shotFromPlayer)
         {
-            boatCollider = Physics2D.OverlapPoint(transform.position);
-            if(boatCollider == null || !boatCollider.gameObject.CompareTag("Enemy"))
+            endCollider = Physics2D.OverlapPoint(transform.position);
+            if(endCollider == null || !endCollider.gameObject.CompareTag("Enemy"))
             {
-                if(boatCollider != null && boatCollider.CompareTag("Land"))
+                if(endCollider != null && endCollider.CompareTag("Land"))
                 {
                     sounds.PlayMissedBall(false);
                 }
@@ -67,13 +67,13 @@ public class CannonBallBehaviour : MonoBehaviour
                 DestroyCannonBall();
                 return;
             }
-            boatCollider.transform.GetComponent<EnemyController>().ChangeHealthAmount(-CannonBallDmg);
+            endCollider.transform.GetComponent<EnemyController>().ChangeHealthAmount(-CannonBallDmg);
             sounds.PlayRandomExplosion();
         }
         else
         {
-            boatCollider = PlayerController.playerReference.GetComponent<PolygonCollider2D>();
-            if (boatCollider.OverlapPoint(transform.position))
+            endCollider = PlayerController.playerReference.GetComponent<PolygonCollider2D>();
+            if (endCollider.OverlapPoint(transform.position))
             {
                 PlayerStats.ChangeHealth(-10);
                 sounds.PlayRandomExplosion();

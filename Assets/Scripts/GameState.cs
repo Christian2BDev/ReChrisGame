@@ -88,7 +88,7 @@ public class GameState : MonoBehaviour
         else
         {
             wavesSurvived++;
-            GameObject.Find("waves").GetComponent<TMP_Text>().text = wavesSurvived.ToString();
+            GameObject.Find("waves").GetComponent<TMP_Text>().text = "waves survived:\n\r" + wavesSurvived.ToString();
         }
     }
 }

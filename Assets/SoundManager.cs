@@ -14,6 +14,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip explosionMissWater;
     [SerializeField] AudioClip explosionMissLand;
     [SerializeField] AudioClip sinkingBoat;
+    [SerializeField] AudioClip destroyItem;
+    [SerializeField] AudioClip crash;
+    [SerializeField] AudioClip dock;
 
     private void Awake()
     {
@@ -56,6 +59,20 @@ public class SoundManager : MonoBehaviour
     public void PlayBoatSink()
     {
         PlaySound(sinkingBoat);
+    }
+
+    public void PlayDestroyItem()
+    {
+        PlaySound(destroyItem);
+    }
+    public void PlayCrash()
+    {
+        PlaySound(crash);
+    }
+
+    public void PlayDock()
+    {
+        PlaySound(dock);
     }
 
     void PlaySound(AudioClip clip)

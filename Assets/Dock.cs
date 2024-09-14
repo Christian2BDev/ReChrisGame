@@ -51,6 +51,7 @@ public class Dock : MonoBehaviour
                 //boatCol.enabled = true;
             }
             docked = !docked;
+            Camera.main.transform.GetComponent<SoundManager>().PlayDock();
         }
     }
 }

@@ -37,16 +37,12 @@ public class ItemCollector : MonoBehaviour
             Inventory.ChangeItemAmount(Item, ResourceAmount);
             GameState.timerTime -= Random.Range(0, 3);
         }
-
-
-
-      
     }
 
     IEnumerator PassiveMe(float secs)
     {
         yield return new WaitForSeconds(secs);
+        //Camera.main.transform.GetComponent<SoundManager>().PlayDestroyItem();
         Destroy(this.gameObject);
-       
     }
 }

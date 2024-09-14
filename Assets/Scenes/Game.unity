@@ -30404,6 +30404,9 @@ MonoBehaviour:
   explosionMissWater: {fileID: 8300000, guid: 126ef2666ba496948ae77e6f4f23e3b6, type: 3}
   explosionMissLand: {fileID: 8300000, guid: 21c690a8b70694e409ecb1c9fb706ad2, type: 3}
   sinkingBoat: {fileID: 8300000, guid: b70ed69f1e914c440bd2caf79246fa12, type: 3}
+  destroyItem: {fileID: 8300000, guid: e1ff85b3b71e2ed49bb4f7ff24f2771f, type: 3}
+  crash: {fileID: 8300000, guid: 588511b24c6507e46ab7b47635e01228, type: 3}
+  dock: {fileID: 8300000, guid: 2777e5d44ec4545498bb292b58dcf266, type: 3}
 --- !u!82 &1230294813
 AudioSource:
   m_ObjectHideFlags: 0
