@@ -48,17 +48,27 @@ public class CannonBallBehaviour : MonoBehaviour
 
     private void CannonBallStopped()
     {
+        SoundManager sounds;
+        sounds = Camera.main.transform.GetComponent<SoundManager>();
         Collider2D boatCollider;
         if(shotFromPlayer)
         {
             boatCollider = Physics2D.OverlapPoint(transform.position);
             if(boatCollider == null || !boatCollider.gameObject.CompareTag("Enemy"))
             {
+                if(boatCollider != null && boatCollider.CompareTag("Land"))
+                {
+                    sounds.PlayMissedBall(false);
+                }
+                else
+                {
+                    sounds.PlayMissedBall(true);
+                }
                 DestroyCannonBall();
                 return;
             }
-            Debug.Log("hit :)");
             boatCollider.transform.GetComponent<EnemyController>().ChangeHealthAmount(-CannonBallDmg);
+            sounds.PlayRandomExplosion();
         }
         else
         {
@@ -66,6 +76,15 @@ public class CannonBallBehaviour : MonoBehaviour
             if (boatCollider.OverlapPoint(transform.position))
             {
                 PlayerStats.ChangeHealth(-10);
+                sounds.PlayRandomExplosion();
+            }
+            else if(Physics2D.OverlapPoint(transform.position).CompareTag("Land"))
+            {
+                sounds.PlayMissedBall(false);
+            }
+            else
+            {
+                sounds.PlayMissedBall(true);
             }
         }
 
@@ -80,6 +99,5 @@ public class CannonBallBehaviour : MonoBehaviour
     public static void UpdateCannonBallDmg()
     {
         CannonBallDmg = orignalCannonBallDmg + (Upgrades.DmgUpgrade-1)* 2;
-
     }
 }
