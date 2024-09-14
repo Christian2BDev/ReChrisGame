@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ItemCollector : MonoBehaviour
@@ -14,11 +15,13 @@ public class ItemCollector : MonoBehaviour
     public int maxAmount;
     public Inventory.Materials Item = new Inventory.Materials();
 
-
+    private GameObject breakParticle;
     
 
     void Start()
     {
+        breakParticle = transform.GetChild(1).gameObject;
+        
         HitsRequired = Random.Range(minHits, maxHits);
         HitsRemaining = HitsRequired;
 
@@ -29,10 +32,21 @@ public class ItemCollector : MonoBehaviour
         HitsRemaining -= x;
         if (HitsRemaining <= 0)
         {
-            Destroy(this.gameObject);
+            breakParticle.SetActive(true);
+            StartCoroutine(PassiveMe(0.2f));
             Inventory.ChangeItemAmount(Item, ResourceAmount);
+            GameState.timerTime -= Random.Range(0, 3);
         }
 
+
+
       
+    }
+
+    IEnumerator PassiveMe(float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        Destroy(this.gameObject);
+       
     }
 }

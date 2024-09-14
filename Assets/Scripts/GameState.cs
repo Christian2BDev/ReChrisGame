@@ -7,7 +7,7 @@ public class GameState : MonoBehaviour
 {
     [SerializeField]
     public bool Storm = true;
-    public float timerTime;
+    public static float timerTime;
 
     public TMP_Text timer;
     [SerializeField]
