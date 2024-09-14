@@ -18211,7 +18211,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 254805354}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -18710,7 +18710,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 254805354}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -25324,7 +25324,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 150307746}
-  - {fileID: 254829233}
   m_Father: {fileID: 1568750843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
@@ -25494,8 +25493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Storm: 0
   timer: {fileID: 1213922097}
-  min: 1
-  max: 2
+  min: 0.1
+  max: 0.2
   spawner: {fileID: 1733931440}
   postProccesing: {fileID: 1101325251}
   target: 0.45
@@ -30503,7 +30502,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 254805354}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -30978,7 +30977,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 254805354}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -32125,7 +32124,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 254805354}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -33557,7 +33556,6 @@ RectTransform:
   - {fileID: 1065715990}
   - {fileID: 1936813955}
   - {fileID: 1480520393}
-  - {fileID: 254805354}
   - {fileID: 2091974541}
   - {fileID: 1846783826}
   - {fileID: 634513305}
@@ -34685,7 +34683,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 2127098865}
   - {fileID: 300425406}
   m_Father: {fileID: 1568750843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34777,7 +34774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7daaf267438d1bc40950cf2fd9530b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 1110404122968312359, guid: 34ae9d0a1c89dda4eb2f01e9991b0482, type: 3}
 --- !u!1 &1740455928
 GameObject:
   m_ObjectHideFlags: 0
@@ -36681,7 +36678,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1990605698}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.02
+  m_Radius: 0.05
   m_Speed: 1
   m_Acceleration: 1
   avoidancePriority: 1
@@ -36690,7 +36687,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 0.2
+  m_Height: 1.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -37857,3 +37854,8 @@ SceneRoots:
   - {fileID: 126735980}
   - {fileID: 2081043282}
   - {fileID: 841521486}
+  - {fileID: 369400700}
+  - {fileID: 447565693}
+  - {fileID: 1250976604}
+  - {fileID: 1285351363}
+  - {fileID: 1418369076}

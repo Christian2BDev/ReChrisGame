@@ -57,7 +57,7 @@ public class GameState : MonoBehaviour
         //timer done
         if (timerTime <= 0.00f)
         {
-            switchPhase();
+            SwitchPhase();
         }
 
 
@@ -77,12 +77,16 @@ public class GameState : MonoBehaviour
     }
 
     //generated a new timer
-    void switchPhase() {
+    void SwitchPhase() {
         timerTime = Mathf.Round(Random.Range(60f * min, 60f * max));
         Storm = !Storm;
         if(Storm == true)
         {
             spawner.SpawnEnemies();
+        }
+        else
+        {
+            wavesSurvived++;
         }
     }
 }
