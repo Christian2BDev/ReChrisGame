@@ -30,8 +30,9 @@ public class ItemCollector : MonoBehaviour
         if (HitsRemaining <= 0)
         {
             Destroy(this.gameObject);
+            Inventory.ChangeItemAmount(Item, ResourceAmount);
         }
 
-        Inventory.ChangeItemAmount(Item, ResourceAmount);
+      
     }
 }

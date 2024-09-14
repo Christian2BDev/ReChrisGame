@@ -37,7 +37,7 @@ public class PlayerAttack : MonoBehaviour
     {
         passedTime += Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && !Dock.docked)
         {
             Vector3 endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //Mouse is over the player, dont shoot a cannonball.

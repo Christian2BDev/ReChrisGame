@@ -6,6 +6,9 @@ public class CannonBallBehaviour : MonoBehaviour
     //B end point
     //C control point
     //Bezier curve: P(t)=(1−t)^2*A+2(1−t)tC+t^2*B
+    public static int orignalCannonBallDmg = 10;
+    public static int CannonBallDmg = 10;
+
 
     Vector2 beginPos, endPos, controlPos;
     float travelTime;
@@ -55,7 +58,7 @@ public class CannonBallBehaviour : MonoBehaviour
                 return;
             }
             Debug.Log("hit :)");
-            boatCollider.transform.GetComponent<EnemyController>().ChangeHealthAmount(-10);
+            boatCollider.transform.GetComponent<EnemyController>().ChangeHealthAmount(-CannonBallDmg);
         }
         else
         {
@@ -72,5 +75,11 @@ public class CannonBallBehaviour : MonoBehaviour
     void DestroyCannonBall()
     {
         Destroy(transform.gameObject);
+    }
+
+    public static void UpdateCannonBallDmg()
+    {
+        CannonBallDmg = orignalCannonBallDmg + (Upgrades.DmgUpgrade-1)* 2;
+
     }
 }

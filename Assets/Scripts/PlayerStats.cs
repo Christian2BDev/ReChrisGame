@@ -4,7 +4,7 @@ using UnityEngine;
 public static class PlayerStats
 {
     private static float health = 100;
-    private static float maxHealth = 100;
+    public static float maxHealth = 100;
     public static float GetHealth() { 
         return health;
     }
@@ -15,35 +15,53 @@ public static class PlayerStats
         health = Mathf.Clamp(health, 0, maxHealth);
         UpdateStats();
         if (health == 0) {
+            Inventory.ResetItems();
+            Inventory.UpdateItems();
+            health = 100;
             GameState.gameOver = true;
         }
         
     }
 
-    public static void SetHealth(float amount)
+    public static void Addhealth(float amount)
     {
-        health = amount;
+        health = health + amount;
         UpdateStats();
     }
 
+    
+
     public static void UpdateStats() {
         GameObject.Find("hearthValue").GetComponent<TMP_Text>().text = (health).ToString();
+    }
+
+    public static void UpdateMaxHealth() {
+        maxHealth = 100 + ((Upgrades.HealthUpgrade-1) * 10);
     }
 }
 
 public static class Inventory
 {
-    private static int wood = 0;
-    private static int stone = 0;
-    private static int meat = 0;
-    private static int gold = 0;
-    private static int steel = 0;
+    private static int wood = 100;
+    private static int stone = 100;
+    private static int meat =100;
+    private static int gold = 100;
+    private static int steel = 100;
 
+
+    
     public enum Materials
     {
         wood, stone, meat, steel, gold
     }
+    public static void ResetItems() {
+        wood = 0;
+        stone = 0;
+        meat = 0;
+        gold = 0;
+        steel = 0;
 
+}
     public static void ChangeItemAmount(Materials m, int a)
     {
         switch (m)
@@ -71,7 +89,7 @@ public static class Inventory
 
     }
 
-    private static void UpdateItems()
+    public static void UpdateItems()
     {
         GameObject.Find("woodValue").GetComponent<TMP_Text>().text = wood.ToString();
         GameObject.Find("stoneValue").GetComponent<TMP_Text>().text = stone.ToString();

@@ -4,20 +4,20 @@ public class PlayerController : MonoBehaviour
 {
     public static GameObject playerReference;
 
-    [SerializeField]
-    private float accelerationMultiplier = 0.01f;
+    private static float originalAccelerationMultiplier = 0.005f;
+    private static float accelerationMultiplier = 0.005f;
 
-    [SerializeField]
-    private float decelerationMultiplier = 0.3f;
+    private static float originalDecelerationMultiplier = 0.08f;
+    private static float decelerationMultiplier = 0.08f;
 
     [SerializeField]
     Rigidbody2D rb;
 
-    [SerializeField]
-    float angularVelocity = 30f;
+    static float originAlangularVelocity = 30f;
+    static float angularVelocity = 30f;
 
-    [SerializeField]
-    float maxVelocity = 1f;
+    static float originalVelocity = 0.5f;
+    static float maxVelocity = 0.5f;
     [SerializeField]
     float minVelocity = -0.3f;
 
@@ -70,5 +70,17 @@ public class PlayerController : MonoBehaviour
         float rad = angleDeg * Mathf.Deg2Rad;
 
         return new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+    }
+
+    public static void UpdateMaxVelocity() {
+        maxVelocity = originalVelocity + (Upgrades.SpeedUpgrade - 1) * 0.2f;
+        accelerationMultiplier = originalAccelerationMultiplier + (Upgrades.SpeedUpgrade - 1) * 0.002f;
+        decelerationMultiplier = originalDecelerationMultiplier + (Upgrades.SpeedUpgrade - 1) * 0.002f;
+    }
+
+    public static void UpdateAngularVelocity()
+    {
+        angularVelocity = originAlangularVelocity + (Upgrades.RotationUpgrade-1) * 2;
+
     }
 }

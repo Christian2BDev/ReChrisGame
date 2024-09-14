@@ -192,6 +192,7 @@ public class EnemyController : MonoBehaviour
         if(health <= 0)
         {
             Destroy(transform.parent.gameObject);
+            Inventory.ChangeItemAmount(Inventory.Materials.gold, Random.Range(1, 5));
         }
 
         //+ 0.000001f so we never devide by zero, it should never be 0, but just in case
