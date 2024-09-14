@@ -7,6 +7,8 @@ public class Dock : MonoBehaviour
     public GameObject player;
     public BoxCollider2D playerCol;
     public PolygonCollider2D boatCol;
+
+    [SerializeField] BoxCollider2D[] worldBorderColliders;
     
     Vector3 dockPosition;
     [SerializeField]
@@ -34,11 +36,17 @@ public class Dock : MonoBehaviour
         {
             if (!docked)
             {
+                foreach(BoxCollider2D col in worldBorderColliders)
+                {
+                    if(col.OverlapPoint(dockPosition))
+                    {
+                        return;
+                    }
+                }
                 playerRigidBody.constraints = RigidbodyConstraints2D.FreezePosition;
                 //Disable collisions between player and land
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Land"), true);
                 playerCol.enabled = true;
-                //boatCol.enabled = false;
                 player.transform.position = dockPosition;
 
             }

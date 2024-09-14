@@ -42,7 +42,7 @@ public class ItemCollector : MonoBehaviour
     IEnumerator PassiveMe(float secs)
     {
         yield return new WaitForSeconds(secs);
-        //Camera.main.transform.GetComponent<SoundManager>().PlayDestroyItem();
+        Camera.main.transform.GetComponent<SoundManager>().PlayDestroyItem();
         Destroy(this.gameObject);
     }
 }

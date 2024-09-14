@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] BoxCollider2D worldBorder;
 
     public static GameObject playerReference;
 
@@ -65,14 +64,6 @@ public class PlayerController : MonoBehaviour
         }
         rb.velocity = currentMovementVec * velocity;
         rb.angularVelocity = -movementVec.x * angularVelocity * velocity;
-    }
-
-    private void Update()
-    {
-        if(!worldBorder.OverlapPoint(transform.position))
-        {
-            transform.position = worldBorder.ClosestPoint(transform.position);
-        }
     }
 
     Vector2 AngleToVector(float angleDeg)
