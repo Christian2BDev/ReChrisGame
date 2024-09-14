@@ -14,6 +14,7 @@ public class DockedPlayerController : MonoBehaviour
     [SerializeField] bool canHarvest;
     [SerializeField] TilemapCollider2D landCollider;
     [SerializeField] float HarvestRange = 2f;
+    [SerializeField] BoxCollider2D worldBorder;
     public LayerMask ask;
 
     float horizontal;
@@ -36,6 +37,11 @@ public class DockedPlayerController : MonoBehaviour
             if (!landCollider.OverlapPoint(transform.position))
             {
                 transform.position = landCollider.ClosestPoint(transform.position);
+            }
+
+            if (!worldBorder.OverlapPoint(transform.position))
+            {
+                transform.position = worldBorder.ClosestPoint(transform.position);
             }
         }
     }
@@ -65,6 +71,4 @@ public class DockedPlayerController : MonoBehaviour
             
         }
     }
-
-
 }

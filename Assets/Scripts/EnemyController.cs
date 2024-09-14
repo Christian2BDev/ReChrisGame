@@ -188,9 +188,9 @@ public class EnemyController : MonoBehaviour
     public void ChangeHealthAmount(float amount)
     {
         health += amount;
-        Debug.Log(health);
         if(health <= 0)
         {
+            Camera.main.transform.GetComponent<SoundManager>().PlayBoatSink();
             Destroy(transform.parent.gameObject);
             Inventory.ChangeItemAmount(Inventory.Materials.gold, Random.Range(1, 5));
         }

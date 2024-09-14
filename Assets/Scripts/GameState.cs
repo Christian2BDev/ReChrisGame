@@ -82,11 +82,13 @@ public class GameState : MonoBehaviour
         Storm = !Storm;
         if(Storm == true)
         {
+            Camera.main.transform.GetComponent<SoundManager>().PlayBeginWafe();
             spawner.SpawnEnemies();
         }
         else
         {
             wavesSurvived++;
+            GameObject.Find("waves").GetComponent<TMP_Text>().text = wavesSurvived.ToString();
         }
     }
 }

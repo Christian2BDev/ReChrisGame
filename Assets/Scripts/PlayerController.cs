@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] BoxCollider2D worldBorder;
+
     public static GameObject playerReference;
 
     private static float originalAccelerationMultiplier = 0.005f;
@@ -37,7 +39,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Land"))
         {
-            //TODO: take speed and direction into account
             PlayerStats.ChangeHealth(-10);
         }
     }
@@ -65,6 +66,14 @@ public class PlayerController : MonoBehaviour
         rb.angularVelocity = -movementVec.x * angularVelocity * velocity;
     }
 
+    private void Update()
+    {
+        if(!worldBorder.OverlapPoint(transform.position))
+        {
+            transform.position = worldBorder.ClosestPoint(transform.position);
+        }
+    }
+
     Vector2 AngleToVector(float angleDeg)
     {
         float rad = angleDeg * Mathf.Deg2Rad;
@@ -81,6 +90,5 @@ public class PlayerController : MonoBehaviour
     public static void UpdateAngularVelocity()
     {
         angularVelocity = originAlangularVelocity + (Upgrades.RotationUpgrade-1) * 2;
-
     }
 }

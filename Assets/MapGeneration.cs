@@ -31,8 +31,8 @@ public class MapGeneration : MonoBehaviour
     public List<GameObject> Items= new List<GameObject>();
     public GameObject ItemParent;
 
-    [SerializeField] int mapWidth = 100;
-    [SerializeField] int mapHeight = 100;
+    public readonly int mapWidth = 100;
+    public readonly int mapHeight = 100;
 
     [SerializeField] float scale = 10f;
     [SerializeField] float waterline = 0.6f;
@@ -74,10 +74,6 @@ public class MapGeneration : MonoBehaviour
                     map.SetTile(new Vector3Int(x, y, 0), oceanTile);
                     copymap.SetTile(new Vector3Int(x, y, 0), oceanTile);
                 }
-
-                
-                   
-                
             }
         }
         ShapeMap();

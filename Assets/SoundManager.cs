@@ -7,10 +7,13 @@ public class SoundManager : MonoBehaviour
     private List<AudioSource> audioSources = new List<AudioSource>();
 
     [SerializeField] AudioSource source;
+
+    [SerializeField] AudioClip beginWave;
     [SerializeField] AudioClip explosionOne;
     [SerializeField] AudioClip explosionTwo;
     [SerializeField] AudioClip explosionMissWater;
     [SerializeField] AudioClip explosionMissLand;
+    [SerializeField] AudioClip sinkingBoat;
 
     private void Awake()
     {
@@ -43,6 +46,16 @@ public class SoundManager : MonoBehaviour
         {
             PlaySound(explosionMissLand);
         }
+    }
+
+    public void PlayBeginWafe()
+    {
+        PlaySound(beginWave);
+    }
+
+    public void PlayBoatSink()
+    {
+        PlaySound(sinkingBoat);
     }
 
     void PlaySound(AudioClip clip)
