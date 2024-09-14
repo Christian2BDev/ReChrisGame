@@ -15,6 +15,8 @@ public class GameState : MonoBehaviour
     [SerializeField]
     private float max = 0;
 
+    [SerializeField]
+    EnemySpawner spawner;
     public GameObject postProccesing;
     private Vignette vg;
     private Volume v;
@@ -29,9 +31,10 @@ public class GameState : MonoBehaviour
     float value = 0;
 
 
-    [SerializeField]
     public static bool gameOver = false;
- 
+
+    public static int wavesSurvived;
+
     private void Start()
     {
         v = postProccesing.GetComponent<Volume>();
@@ -77,5 +80,9 @@ public class GameState : MonoBehaviour
     void switchPhase() {
         timerTime = Mathf.Round(Random.Range(60f * min, 60f * max));
         Storm = !Storm;
+        if(Storm == true)
+        {
+            spawner.SpawnEnemies();
+        }
     }
 }
