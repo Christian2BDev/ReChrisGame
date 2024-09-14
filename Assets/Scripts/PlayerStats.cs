@@ -22,10 +22,11 @@ public static class PlayerStats
         }
         
     }
+  
 
-    public static void Addhealth(float amount)
+    public static void Sethealth(float amount)
     {
-        health = health + amount;
+        health = amount;
         UpdateStats();
     }
 
@@ -42,11 +43,11 @@ public static class PlayerStats
 
 public static class Inventory
 {
-    private static int wood = 100;
-    private static int stone = 100;
-    private static int meat =100;
-    private static int gold = 100;
-    private static int steel = 100;
+    private static int wood = 0;
+    private static int stone = 0;
+    private static int meat =0;
+    private static int gold = 0;
+    private static int steel = 0;
 
 
     

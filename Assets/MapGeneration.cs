@@ -108,7 +108,7 @@ public class MapGeneration : MonoBehaviour
                     {
                         
                         //Instantiate(tree, new Vector3Int(x - 50, y - 50, 0), Quaternion.Euler(0, 0, 0));
-                        Instantiate(Items[Random.Range(0, Items.Count - 1)], new Vector3Int(x - 50, y - 50, 0), Quaternion.Euler(0, 0, 0), ItemParent.transform);
+                        Instantiate(Items[Random.Range(0, Items.Count)], new Vector3Int(x - 50, y - 50, 0), Quaternion.Euler(0, 0, 0), ItemParent.transform);
                     }
                 }
 

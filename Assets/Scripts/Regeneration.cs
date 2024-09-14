@@ -4,26 +4,36 @@ using UnityEngine;
 
 public class Regeneration : MonoBehaviour
 {
-    static float RegenTimer = 10f;
+    static float RegenTimer = 5f;
+    float value;
+
+    private float time = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Regen());
+        value = PlayerStats.GetHealth();
     }
 
-    IEnumerator Regen()
+    private void Update()
     {
 
-        while (PlayerStats.GetHealth() <= PlayerStats.maxHealth)
+        time += Time.deltaTime;
+
+        if (time >= RegenTimer)
         {
-            yield return new WaitForSeconds(RegenTimer);
-            PlayerStats.Addhealth(1);
-         
+            time = time - RegenTimer;
+            PlayerStats.ChangeHealth(1);
+            // execute block of code here
         }
+        //value = Mathf.MoveTowards(value, (PlayerStats.maxHealth), (1 / RegenTimer) * Time.deltaTime);
+        //PlayerStats.Sethealth( Mathf.MoveTowards(PlayerStats.GetHealth(), (PlayerStats.maxHealth), Time.deltaTime));
     }
+
+  
 
     public static void UpdateRegen()
     {
-        RegenTimer = 10f - (Upgrades.RegenUpgrade-1) * 0.33f;
+        RegenTimer = 5f - (Upgrades.RegenUpgrade-1) * 0.33f;
     }
 }

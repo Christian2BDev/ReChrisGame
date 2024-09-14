@@ -5684,7 +5684,7 @@ MonoBehaviour:
   map: {fileID: 1477265826}
   mapl2: {fileID: 1251447240}
   copymap: {fileID: 1310315557}
-  oceanTile: {fileID: 11400000, guid: a974388389b1a44a5ba4406ca9cc1549, type: 2}
+  oceanTile: {fileID: 11400000, guid: f9c7d894ad60c4b00a2da31f37d91e16, type: 2}
   IslandTile: {fileID: 11400000, guid: 30921680a7b064e44be972e32c5b9146, type: 2}
   IslandOceanTransistionTileTop: {fileID: 11400000, guid: ac038f56c6b1546d0b49f2d64f4e2b72, type: 2}
   IslandOceanTransistionTileBottom: {fileID: 11400000, guid: 1055bd1603c3f429c8b4bdf6a6991007, type: 2}
@@ -13356,7 +13356,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: 21300000, guid: b90e1bf5d39a44414873b0358a076855, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 104e9fe7a7fea4eff9a0296b1eb76d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13995,7 +13995,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
